@@ -31,6 +31,11 @@
         <!--or same results... v-for='object in objectArray (in data)'-->
         <li v-for="i in toDoItems">{{ i.title }}</li>
       </ul>
+
+      <!--create random button counter-->
+      <br />
+      <button v-on:click="counter += 1">Add 1</button>
+      <p>The button above has been clicked {{ counter }} times!</p>
     </div>
 
     <!--load vue.js CDN here-->
@@ -62,6 +67,7 @@
               isComplete: false,
             },
           ],
+          counter: 0,
         },
         methods: {
           addItem() {
@@ -69,6 +75,7 @@
               title: this.itemTitle,
               isComplete: false,
             });
+            this.itemTitle = "";
           },
         },
       });
