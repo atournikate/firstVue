@@ -9,15 +9,68 @@
   </head>
   <body>
     <div id="app">
-      <h1>hello world</h1>
+      <h1>{{ title }}</h1>
+      <h2>{{ title2 }}</h2>
+      <p>{{ message + blabla }}</p>
+
+      <br />
+
+      <form v-on:submit.prevent="addItem">
+        <input type="text" name="title" v-model="itemTitle" />
+        <button type="submit">Add</button>
+      </form>
+      <!--first version of toDo item-->
+      <!-- <ul>
+        <li>{{ toDoItem.title }}</li>
+      </ul> -->
+
+      <!--second version of toDo item-->
+      <!--use a For Loop to generate all entries in toDoItems data array-->
+      <ul>
+        <!-- <li v-for="item in toDoItems">{{ item.title }}</li> -->
+        <!--or same results... v-for='object in objectArray (in data)'-->
+        <li v-for="i in toDoItems">{{ i.title }}</li>
+      </ul>
     </div>
 
+    <!--load vue.js CDN here-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-
+    <!--load Vue instance - typically want only ONE instance-->
     <script>
+      //methods are Functions attached to an Object
+      // function checkbox() {
+      //   if (isComplete == false) {
+      //     var checkbox = `<input type="checkbox" value=
+      //   }
+      // }
+
       var app = new Vue({
         el: "#app",
-        data: {},
+        data: {
+          title: "Kate's ToDo App",
+          title2: "A practice with Vue",
+          message: " Hello world!",
+          blabla: " Hoi zäme!",
+          itemTitle: "",
+          toDoItems: [
+            {
+              title: "make this toDo app",
+              isComplete: false,
+            },
+            {
+              title: "Fill in content",
+              isComplete: false,
+            },
+          ],
+        },
+        methods: {
+          addItem() {
+            this.toDoItems.push({
+              title: this.itemTitle,
+              isComplete: false,
+            });
+          },
+        },
       });
     </script>
   </body>
